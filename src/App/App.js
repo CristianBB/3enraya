@@ -100,7 +100,9 @@ class App extends Component {
         />
 
         <div className="info"> {info} </div>
-        <BoardButton value="Reiniciar Partida" onClick={() => this.resetGame()}/>
+        {gameOver &&
+          <BoardButton value="Reiniciar Partida" onClick={() => this.resetGame()}/>
+        }
 
       </div>
     );
