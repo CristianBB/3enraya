@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from "../Box/Box";
 
-const GameTable = ({boxes, onBoxClicked}) => (
+const GameTable = ({boxes, onClick}) => (
 
   <div className="GameTable">
     {boxes.map((row, rowIndex) => (
@@ -10,7 +10,7 @@ const GameTable = ({boxes, onBoxClicked}) => (
           <Box
             key={`${rowIndex}-${columnIndex}`}
             value={column}
-            onClick={() => onBoxClicked(rowIndex, columnIndex)}
+            onClick={() => onClick(rowIndex, columnIndex)}
           />
         ))}
       </div>

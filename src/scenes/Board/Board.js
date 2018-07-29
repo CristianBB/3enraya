@@ -1,19 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
 import GameTable from "../../components/GameTable/GameTable";
+import BoardButton from "./BoardButton";
 
-class Board extends Component {
+const Board = ({boxes, boxClick, info, gameOver, resetClick}) => (
 
-  render() {
-    return (
-      <div className="board">
-        <GameTable
-          boxes={this.props.boxes}
-          onBoxClicked={(row, column) => this.props.onClick(row, column)}
-        />
-        <div className="info">{this.props.info} </div>
-      </div>
-    );
-  }
-}
+  <div className="board">
+    <GameTable
+      boxes={boxes}
+      onClick={(row, column) => boxClick(row, column)}
+    />
+    <div className="info">{info} </div>
+    {gameOver &&
+      <BoardButton value="Nueva Partida" onClick={() => resetClick()}/>
+    }
+  </div>
+
+);
 
 export default Board;
