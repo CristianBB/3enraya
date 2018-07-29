@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Board from './Board';
+import GameBoard from './GameBoard';
 import {
   gameGameOverSelector,
   gameNextPlayerSelector,
@@ -27,7 +27,7 @@ const mapDispatchToProps = {
 };
 
 
-class BoardContainer extends Component {
+class GameBoardContainer extends Component {
   // Click en casilla
   handleClick(row, column) {
     const {gameOver, nextPlayer, boxes, setMove} = this.props;
@@ -45,10 +45,10 @@ class BoardContainer extends Component {
     });
 
     // Comprueba si, tras el último movimiento, hay un ganador o un empate
-    const winner = BoardContainer.checkWinner(boxes);
+    const winner = GameBoardContainer.checkWinner(boxes);
     if (winner) {
       this.gameOver(`Gana jugador ${winner}`);
-    } else if (!BoardContainer.checkLeftMoves(boxes)) {
+    } else if (!GameBoardContainer.checkLeftMoves(boxes)) {
       this.gameOver('Empate');
     }
   }
@@ -144,7 +144,7 @@ class BoardContainer extends Component {
       info = `Turno del jugador: ${nextPlayer}`;
     }
 
-    return <Board
+    return <GameBoard
       boxes={boxes}
       boxClick={(row, column) => this.handleClick(row, column)}
       gameOver={gameOver}
@@ -158,4 +158,4 @@ class BoardContainer extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(BoardContainer);
+)(GameBoardContainer);
