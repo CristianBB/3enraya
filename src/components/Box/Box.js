@@ -1,9 +1,7 @@
 import React from 'react';
 
-function Box(props) {
-  return (
-    <button className="box" onClick={() => props.onClick()}>{props.value}</button>
-  );
-}
+const Box = ({value, onClick}) => (
+  <button className="box" onClick={onClick ? () => onClick() : null}>{value}</button>
+);
 
 export default Box;

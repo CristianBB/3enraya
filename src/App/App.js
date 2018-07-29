@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Board from "../scenes/Board/Board";
 import BoardButton from "../scenes/Board/BoardButton";
+import GameHistory from "../scenes/GameHistory/GameHistory";
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class App extends Component {
   }
 
   // Reinicia estado del tablero
-  resetGame(result) {
+  resetGame() {
     this.setState({
       // Indicador de partida finalizada
       gameOver: false,
@@ -83,10 +84,11 @@ class App extends Component {
     const boxes = this.state.boxes;
     const nextPlayer = this.state.nextPlayer;
     const gameOver = this.state.gameOver;
+    const gameHistory = this.state.gameHistory;
 
     let info;
     if (gameOver) {
-      const gameResult = this.state.gameHistory[this.state.gameHistory.length - 1];
+      const gameResult = gameHistory[gameHistory.length - 1];
       info = gameResult.result;
     } else {
       info = `Turno del jugador: ${nextPlayer}`;
@@ -97,13 +99,15 @@ class App extends Component {
         <Board
           boxes={boxes}
           onClick={(row, column) => this.handleClick(row, column)}
+          info={info}
         />
-
-        <div className="info"> {info} </div>
         {gameOver &&
-          <BoardButton value="Reiniciar Partida" onClick={() => this.resetGame()}/>
+          <BoardButton value="Nueva Partida" onClick={() => this.resetGame()}/>
         }
 
+        <div className="history">
+          <GameHistory history={gameHistory}/>
+        </div>
       </div>
     );
   }

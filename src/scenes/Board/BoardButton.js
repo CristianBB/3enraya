@@ -1,9 +1,7 @@
 import React from 'react';
 
-function BoardButton(props) {
-  return (
-    <button className="resetGame" onClick={() => props.onClick()}>{props.value}</button>
-  );
-}
+const BoardButton = ({value, onClick}) => (
+  <button className="resetGame" onClick={() => onClick()}>{value}</button>
+)
 
 export default BoardButton;
